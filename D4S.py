@@ -1,6 +1,7 @@
 import keyboard
 import pyautogui
 import os
+import configparser
 
 def count_files(directory):
     file_count = 0
@@ -51,24 +52,30 @@ def screenshot_item():
 
 def handle_screenshot(e):
     global snip_state
-    if not snip_state and keyboard.is_pressed('ctrl') and e.name == 'x':
+    if not snip_state and keyboard.is_pressed(modifier_key) and e.name == rare_snip_key:
         screenshot_item()
         snip_state = True
 
 def handle_key_release(e):
     global snip_state
-    if snip_state and not keyboard.is_pressed('x') and e.name == 'x':
+    if snip_state and not keyboard.is_pressed(rare_snip_key) and e.name == rare_snip_key:
         snip_state = False
-
-# Start-up dialog
-print("Welcome to D4S\nTo snip a rare item, hover it, hold 'Ctrl', and press 'X'")
 
 # Once per key stroke limit
 snip_state = False
 
+# Read config
+config = configparser.ConfigParser()
+config.read("config.ini")
+rare_snip_key = config.get('Keybindings', 'rare_snip_key')
+modifier_key = config.get('Keybindings', 'modifier_key')
+
+# Start-up dialog
+print("Welcome to D4S\nTo snip a rare item, hover it, hold " + modifier_key + ", and press " + rare_snip_key)
+
 # Event hooks
-keyboard.on_press_key('x', handle_screenshot)
-keyboard.on_release_key('x', handle_key_release)
+keyboard.on_press_key(rare_snip_key, handle_screenshot)
+keyboard.on_release_key(rare_snip_key, handle_key_release)
 
 # Keep the event listener running
 keyboard.wait()
