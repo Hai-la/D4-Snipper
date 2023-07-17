@@ -71,7 +71,7 @@ rare_snip_key = config.get('Keybindings', 'rare_snip_key')
 modifier_key = config.get('Keybindings', 'modifier_key')
 
 # Start-up dialog
-print("Welcome to D4S\nTo snip a rare item, hover it, hold " + modifier_key + ", and press " + rare_snip_key)
+print("--- Welcome to D4S ---\nTo snip a rare item, hover over it, hold " + modifier_key + ", and press " + rare_snip_key + "\nKeybindings can be changed in config.ini")
 
 # Event hooks
 keyboard.on_press_key(rare_snip_key, handle_screenshot)
