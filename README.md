@@ -1,5 +1,5 @@
 # D4S-source
 Diablo 4 Item Snipper
-Script to find rares on the screen and save a perfectly cropped item screenshots
+Script to find rares on the screen and save a perfectly cropped item screenshot
 
 Hotkey: Ctrl + x
