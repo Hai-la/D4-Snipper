@@ -60,6 +60,9 @@ def handle_key_release(e):
     if snip_state and not keyboard.is_pressed('x') and e.name == 'x':
         snip_state = False
 
+# Start-up dialog
+print("Welcome to D4S\nTo snip a rare item, hover it, hold 'Ctrl', and press 'X'")
+
 # Once per key stroke limit
 snip_state = False
 
